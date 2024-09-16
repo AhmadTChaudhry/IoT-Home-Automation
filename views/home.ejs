@@ -171,14 +171,11 @@
             <div class="card-body">
                 <img class="container-fluid"
                     src="https://www.security.org/app/uploads/2020/05/Vivint-Outdoor-Cam-Pro-Night-Vision.jpg" alt="">
-                <div class="current-date-time">
-                    <p>Current Date and Time: <span id="currentDateTime"></span></p>
-                </div>
+                <p><span id="currentDateTime"></span></p>
                 <script>
                     // Get the current date and time
                     var currentDate = new Date();
                     var currentDateTime = currentDate.toLocaleString();
-
                     // Display the current date and time
                     document.getElementById("currentDateTime").textContent = currentDateTime;
                 </script>
