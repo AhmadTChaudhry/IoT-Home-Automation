@@ -66,7 +66,7 @@ function createChart(data) {
             scales: {
                 x: {
                     title: {
-                        display: true,
+                        display: false,
                         text: 'Week'
                     }
                 },
@@ -81,11 +81,92 @@ function createChart(data) {
     });
 }
 
+// Function to create the electricity usage chart
+function createElectricityChart(data) {
+    const ctx = document.getElementById('electricityChart').getContext('2d');
+    const weeks = data.map(row => row.week);
+    const electricityUsage = data.map(row => row.electricity);
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: weeks,
+            datasets: [
+                {
+                    label: 'Electricity Usage (kWh)',
+                    data: electricityUsage,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: false,
+                        text: 'Week'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Electricity Usage (kWh)'
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Function to create the gas usage chart
+function createGasChart(data) {
+    const ctx = document.getElementById('gasChart').getContext('2d');
+    const weeks = data.map(row => row.week);
+    const gasUsage = data.map(row => row.gas);
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: weeks,
+            datasets: [
+                {
+                    label: 'Gas Usage (m³)',
+                    data: gasUsage,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: false,
+                        text: 'Week'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Gas Usage (m³)'
+                    }
+                }
+            }
+        }
+    });
+}
+
 // Fetch the CSV data and create the chart
 fetch('/data/usage.csv')
     .then(response => response.text())
     .then(data => {
         const parsedData = parseCSV(data);
+        const weeklyData = aggregateByWeek(parsedData);
         createChart(parsedData);
+        createElectricityChart(weeklyData);
+        createGasChart(weeklyData);
     })
     .catch(error => console.error('Error fetching the CSV data:', error));
