@@ -15,11 +15,28 @@ body {
     gap: 20px;
 }
 
-.card {
+/* .card {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
     text-align: center;
+} */
+
+.card {
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+.temperature {
+    font-size: 2rem;
 }
 
 button {

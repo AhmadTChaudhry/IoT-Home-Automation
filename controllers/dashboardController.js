@@ -10,3 +10,8 @@ exports.getHomePage = (req, res) => {
         weeklyElectricityUsage: weeklyUsage.electricity
     });
 };
+
+exports.getHomePage2 = (req, res) => {    
+    res.render('home2', {
+    });
+}
