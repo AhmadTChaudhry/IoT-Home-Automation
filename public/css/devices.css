@@ -1,0 +1,30 @@
+.container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+.card {
+    margin-bottom: 30px;
+}
+
+input[type="time"] {
+    margin-bottom: 10px;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+.time-placeholder {
+    margin-left: 80px;
+}
+
+.get-schedule-btn {
+    float: right;
+    margin-bottom: 50px;
+}
+
+.schedule-table {
+    margin-top: 100px;
+}
