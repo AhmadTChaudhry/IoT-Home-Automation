@@ -32,7 +32,6 @@ let deviceStatus = {
     const { device, onTime, offTime } = req.body;
     deviceSchedules[device] = { onTime, offTime };
     res.json({ message: `Schedule set for ${device}`, schedule: deviceSchedules[device] });
-    console.log("schedddd " + deviceSchedules[device])
   });
   
   // Get current device status
