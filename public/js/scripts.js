@@ -98,28 +98,25 @@ document.getElementById('toggleButton6').addEventListener('click', function () {
 fetch('https://api.weatherapi.com/v1/current.json?key=382aee71609c41c497e144945241609&q=Melbourne')
     .then(response => response.json())
     .then(data => {
-        // Update weather information
         document.getElementById('temperature').textContent = data.current.temp_c + "°C";
         document.getElementById('weather-condition').textContent = data.current.condition.text;
         document.getElementById('wind-speed').textContent = data.current.wind_kph + " km/h";
 
-        // Update weather icon
         document.getElementById('weather-icon').src = "https:" + data.current.condition.icon;
     })
     .catch(error => {
         console.log(error);
     });
 
-// Function to draw the temperature gauge
+// Temperature gauge
 function drawTemperatureGauge(temperature) {
     const canvas = document.getElementById('temperatureGauge');
     const ctx = canvas.getContext('2d');
     const radius = (canvas.height / 2) * 0.9;
 
-    // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw the outer circle
+    // outer circle
     ctx.beginPath();
     ctx.arc(canvas.width / 2, canvas.height / 2, radius, 0, 2 * Math.PI);
     ctx.fillStyle = '#282626';
@@ -128,7 +125,7 @@ function drawTemperatureGauge(temperature) {
     ctx.strokeStyle = '#ccc';
     ctx.stroke();
 
-    // Draw the temperature arc
+    // temperature arc
     const startAngle = 1.5 * Math.PI;
     const endAngle = startAngle + (temperature - 16) / (30 - 16) * 2 * Math.PI;
     ctx.beginPath();
@@ -137,7 +134,7 @@ function drawTemperatureGauge(temperature) {
     ctx.lineWidth = 10;
     ctx.stroke();
 
-    // Draw the temperature text
+    // temperature text
     ctx.font = '28px Arial';
     ctx.fontWeight = 'bolder';
     ctx.fillStyle = '#ffffff';
@@ -146,7 +143,7 @@ function drawTemperatureGauge(temperature) {
     ctx.fillText(`${temperature}°C`, canvas.width / 2, canvas.height / 2);
 }
 
-// Function to update the temperature value and gauge when slider is adjusted
+// Update the temperature value and gauge when slider is adjusted
 document.getElementById('tempSlider').addEventListener('input', function () {
     const temperature = this.value;
     document.getElementById('tempValue').textContent = temperature;

@@ -1,4 +1,4 @@
-// Function to parse CSV data
+// parse CSV data
 function parseCSV(data) {
     const lines = data.split('\n');
     const headers = lines[0].split(',');
@@ -14,7 +14,7 @@ function parseCSV(data) {
     return result;
 }
 
-// Function to aggregate data by week
+// aggregate data by week
 function aggregateByWeek(data) {
     const weeklyData = {};
     data.forEach(row => {
@@ -33,7 +33,7 @@ function aggregateByWeek(data) {
     }));
 }
 
-// Function to create the chart
+// create the chart
 function createChart(data) {
     const ctx = document.getElementById('myChart').getContext('2d');
     const weeklyData = aggregateByWeek(data);
@@ -81,7 +81,7 @@ function createChart(data) {
     });
 }
 
-// Function to create the electricity usage chart
+// create the electricity usage chart
 function createElectricityChart(data) {
     const ctx = document.getElementById('electricityChart').getContext('2d');
     const weeks = data.map(row => row.week);
@@ -120,7 +120,7 @@ function createElectricityChart(data) {
     });
 }
 
-// Function to create the gas usage chart
+// create the gas usage chart
 function createGasChart(data) {
     const ctx = document.getElementById('gasChart').getContext('2d');
     const weeks = data.map(row => row.week);
