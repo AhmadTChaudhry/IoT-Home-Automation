@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    let socket = io();
+
     // Toggle device status
     $('.toggle-btn').on('click', function() {
         let device = $(this).data('device');
@@ -13,10 +15,15 @@ $(document).ready(function() {
             contentType: 'application/json',
             data: JSON.stringify({ device: device, status: newStatus === 'on' }),
             success: function(response) {
-                M.toast({ html: response.message });
-                alert(response.message)
+
+              //Emit socket notification
+              socket.emit('deviceAction', { device: device, status: response.status });
             }
         });
+    });
+
+    socket.on('newNotification', (res) => {
+        showPopup(res)
     });
 
     // Schedule device
@@ -32,14 +39,16 @@ $(document).ready(function() {
             contentType: 'application/json',
             data: JSON.stringify({ device: device, onTime: onTime, offTime: offTime }),
             success: function(response) {
-                M.toast({ html: response.message });
-                alert(response.message);
+                
+
                 $(`#${device}_on_time`).val('');
                 $(`#${device}_off_time`).val('');
 
             }
         });
     });
+
+
 
     $('.get-schedule-btn').on('click', function() {
         $.ajax({
@@ -74,4 +83,17 @@ $(document).ready(function() {
         });
         
     });
+
+    function showPopup(res) {
+        const popup = $('#popupNotification');
+        $('#popupMessage').text(res.message + " on " + res.time);
+
+        popup.addClass('show');
+
+        setTimeout(function () {
+            popup.removeClass('show');
+        }, 3000);
+    }
+
+
 });

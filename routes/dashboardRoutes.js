@@ -31,7 +31,7 @@ let deviceStatus = {
   router.post('/schedule', (req, res) => {
     const { device, onTime, offTime } = req.body;
     deviceSchedules[device] = { onTime, offTime };
-    res.json({ message: `Schedule set for ${device}`, schedule: deviceSchedules[device] });
+    res.json({ message: `Schedule set for ${device}`,device: device , schedule: deviceSchedules[device] });
   });
   
   // Get current device status
