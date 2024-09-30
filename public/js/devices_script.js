@@ -40,6 +40,7 @@ $(document).ready(function() {
             data: JSON.stringify({ device: device, onTime: onTime, offTime: offTime }),
             success: function(response) {
                 
+                socket.emit('scheduleAction', response.device, response.schedule)
 
                 $(`#${device}_on_time`).val('');
                 $(`#${device}_off_time`).val('');
@@ -48,7 +49,9 @@ $(document).ready(function() {
         });
     });
 
-
+    socket.on('scheduleNotification', (res) => {
+        showPopupSchedule(res);
+    });
 
     $('.get-schedule-btn').on('click', function() {
         $.ajax({
@@ -95,5 +98,14 @@ $(document).ready(function() {
         }, 3000);
     }
 
+    function showPopupSchedule(res) {
+        const popup = $('#popupNotification');
+        $('#popupMessage').text(res.device + " has been scheduled for " + res.onTime + " to " + res.offTime);
 
+        popup.addClass('show');
+
+        setTimeout(function () {
+            popup.removeClass('show');
+        }, 3000);
+    }
 });

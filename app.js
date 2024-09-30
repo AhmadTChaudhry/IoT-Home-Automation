@@ -34,6 +34,14 @@ io.on('connection', (socket) => {
         });
     });
 
+    
+    socket.on('scheduleAction', (device, scheduleData) => {
+        console.log('Schedule data received:', scheduleData, device);
+
+        io.emit('scheduleNotification', {device: device, onTime: scheduleData.onTime, offTime: scheduleData.offTime});
+
+    });
+
     socket.on('disconnect', () => {
         console.log('Client disconnected:');
     });
