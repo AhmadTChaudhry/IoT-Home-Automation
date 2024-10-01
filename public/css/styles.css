@@ -90,3 +90,47 @@ label {
     font-size: 16px;
     font-weight: bold;
 }
+
+#filterForm input[type="date"] {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 200px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+#filterForm input[type="date"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Styling the filter button */
+#filterForm button {
+    padding: 10px 15px;
+    background-color: #e7e7e7;
+    color: rgb(41, 41, 41);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 15px;
+}
+
+#filterForm button:hover {
+    background-color: #f0bb80;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for total price display */
+#totalPrice p {
+    font-size: 18px;
+}
+
+#totalPrice strong {
+    color: #dadada;
+}

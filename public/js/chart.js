@@ -170,3 +170,128 @@ fetch('/data/usage.csv')
         createGasChart(weeklyData);
     })
     .catch(error => console.error('Error fetching the CSV data:', error));
+
+    // Electricity and Gas prices (in AUD)
+const ELECTRICITY_PRICE = 0.25; // AUD per kWh
+const GAS_PRICE = 0.1; // AUD per m³
+
+// Variable to store the chart instance
+let priceChartInstance = null;
+
+
+// Calculate price based on usage
+function calculatePrice(data) {
+    return data.map(row => ({
+        date: row['Date'],
+        electricity: parseFloat(row['Electricity Usage (kWh)']),
+        gas: parseFloat(row['Gas Usage (m³)']),
+        electricityPrice: parseFloat(row['Electricity Usage (kWh)']) * ELECTRICITY_PRICE,
+        gasPrice: parseFloat(row['Gas Usage (m³)']) * GAS_PRICE
+    }));
+}
+
+// Filter data by date range
+function filterDataByDateRange(data, startDate, endDate) {
+    return data.filter(row => {
+        const rowDate = new Date(row['Date']);
+        return rowDate >= startDate && rowDate <= endDate;
+    });
+}
+
+// Create the price chart
+// Create the price chart and display total prices
+function createPriceChart(data) {
+    const ctx = $('#priceChart')[0].getContext('2d');
+    const dates = data.map(row => row.date);
+    const electricityPrice = data.map(row => row.electricityPrice);
+    const gasPrice = data.map(row => row.gasPrice);
+
+    // Calculate total prices
+    const totalElectricityPrice = electricityPrice.reduce((acc, curr) => acc + curr, 0);
+    const totalGasPrice = gasPrice.reduce((acc, curr) => acc + curr, 0);
+
+    // Destroy the existing chart instance if it exists
+    if (priceChartInstance) {
+        priceChartInstance.destroy();
+    }
+
+    // Create a new chart instance
+    priceChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: dates,
+            datasets: [
+                {
+                    label: 'Electricity Price (AUD)',
+                    data: electricityPrice,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Gas Price (AUD)',
+                    data: gasPrice,
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Date'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Price (AUD)'
+                    }
+                }
+            }
+        }
+    });
+
+    // Display the total electricity and gas prices on the page
+    $('#totalPrice').html(`
+        <p>Total Electricity Price: <strong>${totalElectricityPrice.toFixed(2)} AUD</strong></p>
+        <p>Total Gas Price: <strong>${totalGasPrice.toFixed(2)} AUD</strong></p>
+        <p>Total Combined Price: <strong>${(totalElectricityPrice + totalGasPrice).toFixed(2)} AUD</strong></p>
+    `);
+}
+
+
+// Fetch data using jQuery AJAX
+function fetchDataAndCreateChart(startDate, endDate) {
+    $.ajax({
+        url: '/data/usage.csv',
+        method: 'GET',
+        success: function(data) {
+
+            const parsedData = parseCSV(data);
+            const filteredData = filterDataByDateRange(parsedData, startDate, endDate);
+            const calculatedData = calculatePrice(filteredData);
+            createPriceChart(calculatedData);
+        },
+        error: function(error) {
+            console.error('Error fetching the CSV data:', error);
+        }
+    });
+}
+
+// Use jQuery for form submission and filtering
+
+$(document).ready(function () {
+
+$('#filterForm').submit(function(e) {
+    e.preventDefault();
+
+    const startDate = new Date($('#startDate').val());
+    const endDate = new Date($('#endDate').val());
+
+    fetchDataAndCreateChart(startDate, endDate);
+});
+});
