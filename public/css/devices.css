@@ -37,3 +37,25 @@ label {
     font-size: 16px;
     font-weight: bold;
 }
+
+.popup {
+    visibility: hidden;
+    width: 250px;
+    background-color: #f5f5f5;
+    color: #292929;
+    text-align: center;
+    border-radius: 5px;
+    padding: 15px;
+    position: fixed;
+    z-index: 1000;
+    bottom: 30px;
+    right: 30px;
+    opacity: 0;
+    transition: opacity 0.5s, visibility 0.5s;
+    font-weight: bold;
+}
+
+.popup.show {
+    visibility: visible;
+    opacity: 1;
+}

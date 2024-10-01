@@ -17,7 +17,37 @@ app.use(express.static(path.join(__dirname, 'public')));
 const dashboardRoutes = require('./routes/dashboardRoutes');
 app.use('/', dashboardRoutes);
 
+//Socket communication of real-time notification
+let http = require('http').createServer(app);
+let io = require('socket.io') (http);
+
+io.on('connection', (socket) => {
+    console.log('New client connected:');
+
+    // Sending real-time notifications
+    socket.on('deviceAction', (actionData) => {
+        console.log('Device action received:', actionData);
+
+        io.emit('newNotification', {
+            message: `Device ${actionData.device} has been turned ${actionData.status ? "ON" : "OFF"}`,
+            time: new Date().toLocaleTimeString()
+        });
+    });
+
+    
+    socket.on('scheduleAction', (device, scheduleData) => {
+        console.log('Schedule data received:', scheduleData, device);
+
+        io.emit('scheduleNotification', {device: device, onTime: scheduleData.onTime, offTime: scheduleData.offTime});
+
+    });
+
+    socket.on('disconnect', () => {
+        console.log('Client disconnected:');
+    });
+});
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+http.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
