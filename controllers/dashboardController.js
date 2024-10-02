@@ -12,3 +12,8 @@ exports.getDevices = (req, res) => {
     res.render('devices', {
     });
 }
+
+exports.getWelcome = (req, res) => {
+    res.render('welcome', {
+    });
+}

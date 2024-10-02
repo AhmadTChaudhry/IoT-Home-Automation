@@ -4,7 +4,9 @@ const dashboardController = require('../controllers/dashboardController');
 const { stat } = require('fs');
 
 // Route for the home dashboard
-router.get('/', dashboardController.getHomePage);
+router.get('/', dashboardController.getWelcome);
+
+router.get('/home', dashboardController.getHomePage);
 
 router.get('/usage', dashboardController.getUsage);
 
