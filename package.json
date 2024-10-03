@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --reporter spec",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
@@ -15,6 +15,7 @@
     "bcrypt": "^5.1.1",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "chai": "^4.3.7",
     "connect-sqlite3": "^0.9.15",
     "csv-parser": "^3.0.0",
     "ejs": "^3.1.10",
@@ -22,6 +23,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.18.0",
     "fs": "^0.0.1-security",
+    "mocha": "^10.7.3",
     "mongodb": "^6.9.0",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
