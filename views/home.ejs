@@ -15,62 +15,97 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
+            <!-- Logo and Brand -->
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="26" fill="turquoise" class="bi bi-house-heart"
                 viewBox="0 0 16 16">
+                <!-- SVG paths -->
                 <path d="M8 6.982C9.664 5.309 13.825 8.236 8 12 2.175 8.236 6.336 5.309 8 6.982" />
-                <path
-                    d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.646a.5.5 0 0 0 .708-.707L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L2 8.207V13.5A1.5 1.5 0 0 0
+                3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.646a.5.5 0 0 0 .708-.707L13
+                5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5
+                0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5
+                0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
             </svg>
             <a class="navbar-brand" href="#">&nbsp Home Automation Dashboard</a>
+
+            <!-- Navbar Toggle Button (for mobile view) -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <!-- Navbar Links -->
             <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a style="color: turquoise;" class="nav-link active" aria-current="page" href="#"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    <!-- Home Link -->
+                    <a style="color: turquoise;" class="nav-link active" aria-current="page" href="/home">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-house" viewBox="0 0 18 18">
                             <path
                                 d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
-                        </svg> Home</a>
-                    <a class="nav-link" href="/devices"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            fill="currentColor" class="bi bi-lamp" viewBox="0 0 18 18">
+                        </svg>
+                        Home
+                    </a>
+
+                    <!-- Devices Link -->
+                    <a class="nav-link" href="/devices">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-lamp" viewBox="0 0 18 18">
                             <path fill-rule="evenodd"
                                 d="M5.04.303A.5.5 0 0 1 5.5 0h5c.2 0 .38.12.46.303l3 7a.5.5 0 0 1-.363.687h-.002q-.225.044-.45.081a33 33 0 0 1-4.645.425V13.5a.5.5 0 1 1-1 0V8.495a33 33 0 0 1-4.645-.425q-.225-.036-.45-.08h-.003a.5.5 0 0 1-.362-.688l3-7ZM3.21 7.116A31 31 0 0 0 8 7.5a31 31 0 0 0 4.791-.384L10.171 1H5.83z" />
                             <path
                                 d="M6.493 12.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.3 1.3 0 0 0-.37.265.3.3 0 0 0-.052.075l-.001.004-.004.01V14l.002.008.016.033a.6.6 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.6.6 0 0 0 .146-.15l.015-.033L12 14v-.004a.3.3 0 0 0-.057-.09 1.3 1.3 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465s-2.462-.172-3.34-.465c-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411" />
-                        </svg> Devices</a>
-                    <a class="nav-link" href="/usage"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            fill="currentColor" class="bi bi-graph-up" viewBox="0 0 18 18">
+                        </svg>
+                        Devices
+                    </a>
+
+                    <!-- Usage Statistics Link -->
+                    <a class="nav-link" href="/usage">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-graph-up" viewBox="0 0 18 18">
                             <path fill-rule="evenodd"
                                 d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07" />
-                        </svg> Usage Statistics</a>
-                    <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            fill="currentColor" class="bi bi-person" viewBox="0 0 18 18">
+                        </svg>
+                        Usage Statistics
+                    </a>
+
+                    <!-- User Email Display -->
+                    <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-person" viewBox="0 0 18 18">
                             <path
                                 d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
-                        </svg> Profile</a>
+                        </svg>
+                        <%= user.email %>
+                    </a>
+
+                    <!-- Logout Link -->
+                    <a class="nav-link" href="/logout">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-box-arrow-right" viewBox="0 0 18 18">
+                            <path fill-rule="evenodd"
+                                d="M6.364 3.636a.5.5 0 0 1 .707 0L10 6.586V1.5a.5.5 0 0 1 1 0v5.086l2.928-2.95a.5.5 0 0 1 .707.707L11 8.707v5.793a.5.5 0 0 1-1 0V8.707l-2.928 2.95a.5.5 0 1 1-.707-.707L9.293 7 6.364 4.071a.5.5 0 0 1 0-.707z" />
+                            <path fill-rule="evenodd"
+                                d="M4.5 1A1.5 1.5 0 0 0 3 2.5v11A1.5 1.5 0 0 0 4.5 15h7a1.5 1.5 0 0 0 1.5-1.5V9.915a.5.5 0 0 1 1 0V13.5A2.5 2.5 0 0 1 11.5 16h-7A2.5 2.5 0 0 1 2 13.5v-11A2.5 2.5 0 0 1 4.5 0h7A2.5 2.5 0 0 1 14 2.5V6a.5.5 0 0 1-1 0V2.5A1.5 1.5 0 0 0 11.5 1h-7z" />
+                        </svg>
+                        Logout
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-
     <div class="container-grid">
         <div class="card container-fluid">
             <div class="card-header"><i class="fas fa-thermometer-half icon"></i>Devices</div>
 
             <!-- Row 1 -->
             <div class="row">
+                <!-- Device 1 -->
                 <div class="col-md-4">
                     <div class="card-body">
                         <div>
@@ -85,7 +120,7 @@
                         <button id="toggleButton" class="btn btn-primary">Off</button>
                     </div>
                 </div>
-
+                <!-- Device 2 -->
                 <div class="col-md-4">
                     <div class="card-body">
                         <div>
@@ -100,7 +135,7 @@
                         <button id="toggleButton2" class="btn btn-primary">Off</button>
                     </div>
                 </div>
-
+                <!-- Device 3 -->
                 <div class="col-md-4">
                     <div class="card-body">
                         <div>
@@ -119,6 +154,7 @@
 
             <!-- Row 2 -->
             <div class="row">
+                <!-- Device 4 -->
                 <div class="col-md-4">
                     <div class="card-body">
                         <div>
@@ -133,7 +169,7 @@
                         <button id="toggleButton4" class="btn btn-primary">Off</button>
                     </div>
                 </div>
-
+                <!-- Device 5 -->
                 <div class="col-md-4">
                     <div class="card-body">
                         <div>
@@ -148,7 +184,7 @@
                         <button id="toggleButton5" class="btn btn-primary">Off</button>
                     </div>
                 </div>
-
+                <!-- Device 6 -->
                 <div class="col-md-4">
                     <div class="card-body">
                         <div>
@@ -166,11 +202,12 @@
             </div>
         </div>
 
+        <!-- CCTV Stream Card -->
         <div class="card">
             <div class="card-header"><i class="fas fa-thermometer-half icon"></i>CCTV Stream</div>
             <div class="card-body">
                 <img class="container-fluid"
-                    src="https://www.security.org/app/uploads/2020/05/Vivint-Outdoor-Cam-Pro-Night-Vision.jpg" alt="">
+                    src="https://cdn.mos.cms.futurecdn.net/wKFj3mev3niAFUjbVnF4T6.gif" alt="">
                 <p><span id="currentDateTime"></span></p>
                 <script>
                     // Get the current date and time
@@ -202,9 +239,7 @@
                             <h2 style="font-weight: bold;"><span id="wind-speed"></span></h2>
                             <p>Wind Speed</p>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
@@ -229,6 +264,7 @@
 
     </div>
 
+    <!-- Electricity and Gas Usage Card -->
     <div class="container-fluid">
         <div class="card">
             <div class="card-header"><i class="fas fa-bed icon"></i>Electricity and Gas Usage</div>
@@ -240,10 +276,23 @@
     </div>
     <br>
 
+    <!-- Location Card -->
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header"><i class="fas fa-bed icon"></i>Location</div>
+            <div class="card-body">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12601.570603878878!2d145.10448114797813!3d-37.85110206647556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad640592c2ddceb%3A0x805bd52f251bd12!2sDeakin%20University%20Melbourne%20Burwood%20Campus!5e0!3m2!1sen!2sau!4v1727948526441!5m2!1sen!2sau"
+                    width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 bg-body-tertiary">
+    <footer class="footer mt-auto py-3 bg-body-tertiary text-center">
         <div class="container">
-            <span class="text-muted">© 2024 Home Automation Dashboard</span>
+            <span class="text-muted">© <%= new Date().getFullYear() %> Home Automation Dashboard</span>
         </div>
     </footer>
     <script src="/js/scripts.js"></script>

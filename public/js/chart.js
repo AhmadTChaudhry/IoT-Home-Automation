@@ -1,4 +1,4 @@
-// parse CSV data
+// Parse CSV data
 function parseCSV(data) {
     const lines = data.split('\n');
     const headers = lines[0].split(',');
@@ -14,7 +14,7 @@ function parseCSV(data) {
     return result;
 }
 
-// aggregate data by week
+// Aggregate data by week
 function aggregateByWeek(data) {
     const weeklyData = {};
     data.forEach(row => {
@@ -33,7 +33,7 @@ function aggregateByWeek(data) {
     }));
 }
 
-// create the chart
+// Create chart
 function createChart(data) {
     const ctx = document.getElementById('myChart').getContext('2d');
     const weeklyData = aggregateByWeek(data);
@@ -81,7 +81,7 @@ function createChart(data) {
     });
 }
 
-// create the electricity usage chart
+// Create electricity usage chart
 function createElectricityChart(data) {
     const ctx = document.getElementById('electricityChart').getContext('2d');
     const weeks = data.map(row => row.week);
@@ -120,7 +120,7 @@ function createElectricityChart(data) {
     });
 }
 
-// create the gas usage chart
+// Create gas usage chart
 function createGasChart(data) {
     const ctx = document.getElementById('gasChart').getContext('2d');
     const weeks = data.map(row => row.week);
@@ -171,13 +171,12 @@ fetch('/data/usage.csv')
     })
     .catch(error => console.error('Error fetching the CSV data:', error));
 
-    // Electricity and Gas prices (in AUD)
+// Electricity and Gas prices (in AUD)
 const ELECTRICITY_PRICE = 0.25; // AUD per kWh
 const GAS_PRICE = 0.1; // AUD per m³
 
 // Variable to store the chart instance
 let priceChartInstance = null;
-
 
 // Calculate price based on usage
 function calculatePrice(data) {
@@ -198,7 +197,6 @@ function filterDataByDateRange(data, startDate, endDate) {
     });
 }
 
-// Create the price chart
 // Create the price chart and display total prices
 function createPriceChart(data) {
     const ctx = $('#priceChart')[0].getContext('2d');
@@ -269,14 +267,14 @@ function fetchDataAndCreateChart(startDate, endDate) {
     $.ajax({
         url: '/data/usage.csv',
         method: 'GET',
-        success: function(data) {
+        success: function (data) {
 
             const parsedData = parseCSV(data);
             const filteredData = filterDataByDateRange(parsedData, startDate, endDate);
             const calculatedData = calculatePrice(filteredData);
             createPriceChart(calculatedData);
         },
-        error: function(error) {
+        error: function (error) {
             console.error('Error fetching the CSV data:', error);
         }
     });
@@ -286,12 +284,12 @@ function fetchDataAndCreateChart(startDate, endDate) {
 
 $(document).ready(function () {
 
-$('#filterForm').submit(function(e) {
-    e.preventDefault();
+    $('#filterForm').submit(function (e) {
+        e.preventDefault();
 
-    const startDate = new Date($('#startDate').val());
-    const endDate = new Date($('#endDate').val());
+        const startDate = new Date($('#startDate').val());
+        const endDate = new Date($('#endDate').val());
 
-    fetchDataAndCreateChart(startDate, endDate);
-});
+        fetchDataAndCreateChart(startDate, endDate);
+    });
 });

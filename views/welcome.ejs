@@ -11,7 +11,6 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <style>
-        /* Keyframes for fade-in animation */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -22,9 +21,29 @@
             }
         }
 
-        /* Apply animation to the image and the button */
         .fade-in {
             animation: fadeIn 2s ease-in-out;
+        }
+
+        .main-image {
+            max-width: 80%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -47,26 +66,21 @@
                 </svg>
                 <a class="navbar-brand ms-2" href="#">Home Automation Dashboard</a>
             </div>
-
-
         </div>
     </nav>
 
     <!-- Main Content -->
-     <div class="container text-center mt-5">
-         <h1 class="text-center">Welcome to the Future</h1>
-         <p>&nbsp</p>
-         <!-- Image centered on the page with fade-in animation -->
-         <img src="https://digitalhomesystems.com.au/wp-content/uploads/2024/06/home-automation.jpg"
-         alt="Dashboard Image" class="img-fluid mx-auto d-block fade-in" style="border-radius: 15px; box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.5);">
-    
+    <div class="container text-center mt-5">
+        <h1 class="text-center">Welcome to the Future</h1>
+        <p>&nbsp;</p>
+        <img src="https://digitalhomesystems.com.au/wp-content/uploads/2024/06/home-automation.jpg"
+            alt="Dashboard Image" class="img-fluid mx-auto d-block fade-in main-image">
     </div>
 
     <div class="container text-center mt-10">
-        <!-- Home Button with fade-in animation and delay, set to be wide -->
-        <a class="btn btn-primary btn-lg w-50 mt-3 fade-in" href="/home" style="animation-delay: 1s;">Enter Dashboard</a>
+        <a class="btn btn-primary btn-lg w-50 mt-3 fade-in" href="/home" style="animation-delay: 1s;">Enter
+            Dashboard</a>
     </div>
-
 
     <script src="/js/scripts.js"></script>
 
