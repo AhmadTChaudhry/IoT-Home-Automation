@@ -1,7 +1,5 @@
-// app.js
 const express = require('express');
 const path = require('path');
-// const bodyParser = require('body-parser'); // Not needed as Express has built-in body-parser
 const session = require('express-session');
 const passport = require('passport');
 const flash = require('express-flash');
@@ -10,7 +8,6 @@ const { createUser, findUserByEmail, findUserById } = require('./models/userMode
 const sqlite3 = require('sqlite3').verbose();
 const app = express();
 
-// Middleware Setup
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -18,7 +15,6 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Serve static files (CSS, JS, images)
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Initialize Passport
@@ -27,7 +23,7 @@ initializePassport(passport);
 // Configure session management
 app.use(
   session({
-    secret: 'your_secret_key', // Replace with a strong secret
+    secret: 'your_secret_key', 
     resave: false,
     saveUninitialized: false,
     store: new (require('connect-sqlite3')(session))({ db: 'sessions.db' }),
