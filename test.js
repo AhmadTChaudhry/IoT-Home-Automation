@@ -49,9 +49,7 @@ describe("UNIT TESTS", function () {
 
     it("Database with User Credentials Exists", function () {
         const dbPath = path.join(__dirname, "database.db");
-
         const fileExists = fs.existsSync(dbPath);
-
         expect(fileExists).to.be.true;
     });
 });
